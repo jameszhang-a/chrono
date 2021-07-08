@@ -29,6 +29,8 @@
 #include "chrono_models/vehicle/mrole/mrole_DoubleWishbone.h"
 #include "chrono_models/vehicle/mrole/mrole_Driveline2WD.h"
 #include "chrono_models/vehicle/mrole/mrole_Driveline4WD.h"
+#include "chrono_models/vehicle/mrole/mrole_Driveline6WD.h"
+#include "chrono_models/vehicle/mrole/mrole_Driveline8WD.h"
 #include "chrono_models/vehicle/mrole/mrole_SimpleDriveline.h"
 #include "chrono_models/vehicle/mrole/mrole_SimpleDrivelineXWD.h"
 #include "chrono_models/vehicle/mrole/mrole_RackPinion.h"
@@ -132,6 +134,12 @@ void mrole_VehicleFull::Create(bool fixed,
         case DrivelineTypeWV::AWD:
             m_driveline = chrono_types::make_shared<mrole_Driveline4WD>("Driveline");
             break;
+        case DrivelineTypeWV::AWD6:
+            m_driveline = chrono_types::make_shared<mrole_Driveline6WD>("Driveline");
+            break;
+        case DrivelineTypeWV::AWD8:
+            m_driveline = chrono_types::make_shared<mrole_Driveline8WD>("Driveline");
+            break;
         case DrivelineTypeWV::SIMPLE:
             m_driveline = chrono_types::make_shared<mrole_SimpleDriveline>("Driveline");
             break;
@@ -153,7 +161,6 @@ void mrole_VehicleFull::Initialize(const ChCoordsys<>& chassisPos, double chassi
     // frame).
     ChVector<> offset1 = ChVector<>(-0.45, 0, 0.0);
     ChVector<> offset2 = ChVector<>(-0.45 - 1.55, 0, 0.0);
-    ChQuaternion<> rotation = Q_from_AngAxis(0.5 * CH_C_PI / 180, ChVector<>(0, 1, 0));
     m_steerings[0]->Initialize(m_chassis, offset1, QUNIT);
     m_steerings[1]->Initialize(m_chassis, offset2, QUNIT);
 
@@ -182,6 +189,17 @@ void mrole_VehicleFull::Initialize(const ChCoordsys<>& chassisPos, double chassi
             driven_susp_indexes[0] = 2;
             driven_susp_indexes[1] = 3;
             break;
+        case DrivelineTypeWV::AWD6:
+            driven_susp_indexes[0] = 0;
+            driven_susp_indexes[1] = 2;
+            driven_susp_indexes[2] = 3;
+            break;
+        case DrivelineTypeWV::AWD8:
+            driven_susp_indexes[0] = 0;
+            driven_susp_indexes[1] = 1;
+            driven_susp_indexes[2] = 2;
+            driven_susp_indexes[3] = 3;
+            break;
         case DrivelineTypeWV::SIMPLE_XWD:
             driven_susp_indexes.resize(4);
             driven_susp_indexes[0] = 0;
@@ -192,6 +210,7 @@ void mrole_VehicleFull::Initialize(const ChCoordsys<>& chassisPos, double chassi
     }
 
     m_driveline->Initialize(m_chassis, m_axles, driven_susp_indexes);
+    
 }
 
 // -----------------------------------------------------------------------------

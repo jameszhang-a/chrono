@@ -65,12 +65,11 @@ void mrole_TMeasyTire::SetTMeasyParams() {
     // Tire Size = 37 x 12.5 x 16.5 Load Range D
     // Tire Load 3850 lbs at 50 psi (Goodyear Military Tire Brochure 6th Edition)
 
-    const double lbs2N = 4.4482216153;
     ////unsigned int li = 108;  // guessed from load spec. of the vehicle
     const double in2m = 0.0254;
     double w = 0.415;
     double r = 0.8;
-    double h = r * w;
+    ////double h = r * w;
     double rimdia = 27.0 * in2m;
 
     double load = 9.81 * 4500.0;
@@ -119,12 +118,11 @@ void mrole_TMeasyTireSoil::SetTMeasyParams() {
     // Tire Size = 37 x 12.5 x 16.5 Load Range D
     // Tire Load 3850 lbs at 50 psi (Goodyear Military Tire Brochure 6th Edition)
 
-    const double lbs2N = 4.4482216153;
     ////unsigned int li = 108;  // guessed from load spec. of the vehicle
     const double in2m = 0.0254;
     double w = 0.415;
     double r = 0.8;
-    double h = r * w;
+    ////double h = r * w;
     double rimdia = 27.0 * in2m;
 
     double load = 9.81 * 4500.0;
@@ -173,12 +171,11 @@ void mrole_TMeasyTireSand::SetTMeasyParams() {
     // Tire Size = 37 x 12.5 x 16.5 Load Range D
     // Tire Load 3850 lbs at 50 psi (Goodyear Military Tire Brochure 6th Edition)
 
-    const double lbs2N = 4.4482216153;
     ////unsigned int li = 108;  // guessed from load spec. of the vehicle
     const double in2m = 0.0254;
     double w = 0.415;
     double r = 0.8;
-    double h = r * w;
+    ////double h = r * w;
     double rimdia = 27.0 * in2m;
 
     double load = 9.81 * 4500.0;
